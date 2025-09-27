@@ -43,7 +43,7 @@ const MemoryMapSignUp = () => {
  useEffect(() => {
     const checkSession = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/session", {
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/session`, {
           method: "GET",
           credentials: "include", // Include cookies
         });
@@ -71,7 +71,7 @@ const MemoryMapSignUp = () => {
     useEffect(() => {
       const fetchCourses = async () => {
         try {
-          const response = await fetch("http://localhost:5000/api/courses");
+          const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/courses`);
           if (!response.ok) throw new Error("Failed to fetch courses");
           const data = await response.json();
           setCourses([...new Set([...data, "Other"])]);
@@ -82,7 +82,7 @@ const MemoryMapSignUp = () => {
   
       const fetchWorkTitles = async () => {
         try {
-          const response = await fetch("http://localhost:5000/api/worktitle");
+          const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/worktitle`);
           if (!response.ok) throw new Error("Failed to fetch work fields");
           const data = await response.json();
           setWorkTitles([...new Set([...data, "Other"])]);
@@ -139,7 +139,7 @@ const MemoryMapSignUp = () => {
       }
   
       try {
-        const response = await fetch("http://localhost:5000/api/register", {
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/register`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),

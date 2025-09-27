@@ -21,7 +21,7 @@ const navigate = useNavigate();
     }
   
     try {
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const navigate = useNavigate();
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const response = await fetch("http://localhost:5000//api/user", {
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}//api/user`, {
           method: "GET",
           credentials: "include", // Include cookies
         });

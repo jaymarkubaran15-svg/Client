@@ -9,7 +9,7 @@ const MemoryMapLanding = () => {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/session", {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}`, {
           method: "GET",
           credentials: "include",
         });

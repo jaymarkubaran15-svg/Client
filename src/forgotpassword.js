@@ -58,7 +58,7 @@ useEffect(() => {
 
 const handleVerifyClick = async () => {
   try {
-    const response = await fetch("http://localhost:5000/api/verify-code", {
+    const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/verify-code`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -86,7 +86,7 @@ const handleVerifyClick = async () => {
 useEffect(() => {
   const fetchUsers = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/users");
+      const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/users`);
       const data = await response.json();
       setUsers(data);
     } catch (error) {
@@ -127,7 +127,7 @@ useEffect(() => {
 
   const sendCodeToEmail = async (email) => {
   try {
-    const response = await fetch("http://localhost:5000/api/send-code", {
+    const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/send-code`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
@@ -158,7 +158,7 @@ const handlePasswordReset = async () => {
   }
 
   try {
-    const response = await fetch("http://localhost:5000/api/reset-password", {
+    const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/reset-password`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -7,8 +7,7 @@ export default function EmployerFeedbackForm({ onClose, alumniId }) {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/feedback-schema")
-      .then((res) => res.json())
+    fetch(`http://${process.env.REACT_APP_API_URL}/api/feedback-schema`)      .then((res) => res.json())
       .then((result) => {
         if (result.success && result.schema) {
           setSchema({ sections: result.schema.sections || [], id: result.schema.id });
@@ -36,7 +35,7 @@ export default function EmployerFeedbackForm({ onClose, alumniId }) {
         response: answers,
       };
 
-      const res = await fetch("http://localhost:5000/api/feedback-response", {
+      const res = await fetch(`http://${process.env.REACT_APP_API_URL}/api/feedback-response`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
