@@ -23,7 +23,7 @@ const Courses = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/courses");
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/courses`);
         if (!response.ok) throw new Error("Failed to fetch courses");
         const data = await response.json();
         setCourses(data); 
@@ -34,7 +34,7 @@ const Courses = () => {
 
     const fetchWorkFields = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/workfields");
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/workfields`);
         if (!response.ok) throw new Error("Failed to fetch work fields");
         const data = await response.json();
         setWorkFields(data); 
@@ -75,7 +75,7 @@ const Courses = () => {
     const surveyData = { selectedCourse, selectedWorkField, workTitles };
 
     try {
-      const response = await fetch("http://localhost:5000/api/surveyop", {
+      const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/surveyop`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(surveyData),

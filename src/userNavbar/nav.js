@@ -33,7 +33,7 @@ const YearbookViewer = ({ yearbook, onClose }) => {
   
     if (!yearbookId) return;
   
-    fetch(`http://localhost:5000/yearbook/${yearbookId}/images`)
+    fetch(`http://${process.env.REACT_APP_API_URL}/yearbook/${yearbookId}/images`)
       .then((res) => res.json())
       .then((data) => setImages(data))
       .catch((err) => console.error("Error fetching images:", err));
@@ -99,7 +99,7 @@ const YearbookViewer = ({ yearbook, onClose }) => {
               className="w-auto h-auto flex justify-center items-center "
             >
               <img
-                src={`http://localhost:5000/${img.file_path}`}
+                src={`http://${process.env.REACT_APP_API_URL}/${img.file_path}`}
                 alt={`Page ${index + 1}`}
                 className="max-w-full max-h-full object-contain rounded-lg"
               />
@@ -176,7 +176,7 @@ useEffect(() => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/user", {
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/user`, {
           credentials: "include",
         });
         if (!response.ok) throw new Error("Failed to fetch user data");

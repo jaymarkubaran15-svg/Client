@@ -9,7 +9,7 @@ export default function AdminFeedbackTable() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/feedback-schema")
+    fetch(`http://${process.env.REACT_APP_API_URL}/api/feedback-schema`)
       .then((res) => res.json())
       .then((result) => {
         if (result.success && result.schema) {
@@ -33,7 +33,7 @@ export default function AdminFeedbackTable() {
       })),
     };
 
-    const res = await fetch("http://localhost:5000/api/feedback-schema", {
+    const res = await fetch(`http://${process.env.REACT_APP_API_URL}/api/feedback-schema`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(cleanedSchema),

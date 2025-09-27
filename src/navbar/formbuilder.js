@@ -27,7 +27,7 @@ const filteredSections = schema.sections.filter((sec) => {
 
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/schema")
+    fetch(`http://${process.env.REACT_APP_API_URL}/api/schema`)
       .then((res) => res.json())
       .then((result) => {
         if (result.success && result.schema) {
@@ -55,7 +55,7 @@ const filteredSections = schema.sections.filter((sec) => {
       })),
     };
 
-      const res = await fetch("http://localhost:5000/api/schema", {
+      const res = await fetch(`http://${process.env.REACT_APP_API_URL}/api/schema`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(cleanedSchema),

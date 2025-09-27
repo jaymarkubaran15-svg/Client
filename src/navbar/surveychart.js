@@ -15,7 +15,7 @@ export default function ChartsDashboard() {
   useEffect(() => {
     const fetchSurveyData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/surveydata");
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/surveydata`);
         const result = await response.json();
         if (response.ok) {
           setSurveyData(result);

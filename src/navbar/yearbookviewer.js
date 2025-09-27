@@ -5,7 +5,7 @@ const YearbookViewer = ({ yearbook, onClose }) => {
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/yearbook/${yearbook.id}/images`)
+    fetch(`http://${process.env.REACT_APP_API_URL}/yearbook/${yearbook.id}/images`)
       .then((res) => res.json())
       .then((data) => setImages(data))
       .catch((err) => console.error("Error fetching images:", err));
@@ -21,7 +21,7 @@ const YearbookViewer = ({ yearbook, onClose }) => {
           <HTMLFlipBook width={500} height={700} className="shadow-lg">
             {images.map((img, index) => (
               <div key={index} className="w-full h-full flex justify-center items-center">
-                <img src={`http://localhost:5000/${img.file_path}`} alt={`Page ${index + 1}`} className="max-w-full max-h-full" />
+                <img src={`http://${process.env.REACT_APP_API_URL}/${img.file_path}`} alt={`Page ${index + 1}`} className="max-w-full max-h-full" />
               </div>
             ))}
           </HTMLFlipBook>

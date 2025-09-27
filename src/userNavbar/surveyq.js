@@ -20,7 +20,7 @@ export default function GTSPage({ onSurveySubmit }) {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/session", {
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/session`, {
           method: "GET",
           credentials: "include", // Include cookies
         });
@@ -49,7 +49,7 @@ export default function GTSPage({ onSurveySubmit }) {
   }, [data]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/survyschema")
+    fetch(`http://${process.env.REACT_APP_API_URL}/api/survyschema`)
       .then((res) => res.json())
       .then((result) => {
         if (result.success && result.schema) {
@@ -78,7 +78,7 @@ export default function GTSPage({ onSurveySubmit }) {
   setSubmitted(true);
 
   try {
-    const res = await fetch("http://localhost:5000/api/submitsurvey", {
+    const res = await fetch(`http://${process.env.REACT_APP_API_URL}/api/submitsurvey`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include", // ✅ keeps session cookies

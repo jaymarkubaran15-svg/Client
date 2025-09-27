@@ -13,7 +13,7 @@ export default function GTSForm() {
 
   // 🔹 Load schema from backend safely
 useEffect(() => {
-  fetch("http://localhost:5000/api/schema")
+  fetch(`http://${process.env.REACT_APP_API_URL}/api/schema`)
     .then(res => res.json())
     .then(result => {
       if (result?.success && Array.isArray(result?.schema?.sections)) {
@@ -31,7 +31,7 @@ useEffect(() => {
     useEffect(() => {
       const checkSession = async () => {
         try {
-          const response = await fetch("http://localhost:5000/api/session", {
+          const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/session`, {
             method: "GET",
             credentials: "include", // Include cookies
           });
@@ -209,7 +209,7 @@ const validateAll = () => {
   
         console.log("User Session:", user);
   
-        const response =  await fetch("http://localhost:5000/api/submit",{
+        const response =  await fetch(`http://${process.env.REACT_APP_API_URL}/api/submit`,{
           method: "POST",
           headers: {
             "Content-Type": "application/json",

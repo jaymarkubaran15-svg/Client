@@ -56,7 +56,7 @@ const [selectedBatch, setSelectedBatch] = useState("");
 
   // Fetch schema
   useEffect(() => {
-    fetch("http://localhost:5000/api/survyschema")
+    fetch(`http://${process.env.REACT_APP_API_URL}/api/survyschema`)
       .then((res) => res.json())
       .then((result) => {
         if (result.success && result.schema) {
@@ -74,7 +74,7 @@ const [selectedBatch, setSelectedBatch] = useState("");
 
   // Fetch submissions
   useEffect(() => {
-    fetch("http://localhost:5000/api/surveysubmissions")
+    fetch(`http://${process.env.REACT_APP_API_URL}/api/surveysubmissions`)
       .then((res) => res.json())
       .then((result) => {
         if (result.success) setSubmissions(result.data || []);

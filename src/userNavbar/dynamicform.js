@@ -36,7 +36,7 @@ const prevStep = () => {
 
   // Load schema from DB when page mounts
 useEffect(() => {
-  fetch("http://localhost:5000/api/schema")
+  fetch(`http://${process.env.REACT_APP_API_URL}/api/schema`)
     .then(res => res.json())
     .then(result => {
       if (result.success && result.schema) {
@@ -60,7 +60,7 @@ const onSubmit = async (e) => {
   if (!validate()) return;
 
   try {
-    const res = await fetch("http://localhost:5000/api/submit", {
+    const res = await fetch(`http://${process.env.REACT_APP_API_URL}/api/submit`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -207,7 +207,7 @@ const addOption = (sIdx, fIdx) => {
 // helper to save schema to DB
 const persistSchema = async (schema) => {
   try {
-    const res = await fetch("http://localhost:5000/api/schema", {
+    const res = await fetch(`http://${process.env.REACT_APP_API_URL}/api/schema`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ schema }), // 🔥 wrap inside {schema}

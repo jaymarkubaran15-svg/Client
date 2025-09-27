@@ -42,7 +42,7 @@ const [passwordData, setPasswordData] = useState({
 
   const fetchUser = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/profile", { credentials: "include" });
+      const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/profile`, { credentials: "include" });
       if (!response.ok) throw new Error("Failed to fetch user data");
       const userData = await response.json();
       setUser({ ...userData }); // Add this line to update user state
@@ -64,7 +64,7 @@ const [passwordData, setPasswordData] = useState({
 
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:5000/api/logout", { method: "POST", credentials: "include" });
+      await fetch(`http://${process.env.REACT_APP_API_URL}/api/logout`, { method: "POST", credentials: "include" });
       localStorage.removeItem("user");
       navigate("/login");
     } catch (error) {

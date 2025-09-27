@@ -42,7 +42,7 @@ const Event = () => {
 
     const fetchEvents = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/events", {
+            const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/events`, {
                 credentials: "include",
             });
             const data = await response.json();
@@ -110,7 +110,7 @@ const Event = () => {
     });
   
     try {
-      const response = await fetch("http://localhost:5000/api/events", {
+      const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/events`, {
         method: "POST",
         credentials: "include",
         body: formData,
@@ -147,7 +147,7 @@ const handleDelete = async (eventId) => {
   }).then(async (result) => {
     if (result.isConfirmed) {
       try {
-        const response = await fetch(`http://localhost:5000/api/events/${eventId}`, {
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/events/${eventId}`, {
           method: "DELETE",
           credentials: "include",
         });
@@ -354,10 +354,10 @@ const handleDelete = async (eventId) => {
                 {JSON.parse(event.images).map((image, index) => (
                   <img
                     key={index}
-                    src={`http://localhost:5000${image}`}
+                    src={`http://${process.env.REACT_APP_API_URL}${image}`}
                     alt="Event"
                     className="rounded-lg cursor-pointer"
-                    onClick={() => setSelectedImage(`http://localhost:5000${image}`)}
+                    onClick={() => setSelectedImage(`http://${process.env.REACT_APP_API_URL}${image}`)}
                   />
                 ))}
               </div>

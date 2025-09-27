@@ -38,7 +38,7 @@ const UploadYearbook = ({ setYearbooks }) => {
   }
 
   try {
-    const response = await fetch("http://localhost:5000/upload-yearbook", {
+    const response = await fetch(`http://${process.env.REACT_APP_API_URL}/upload-yearbook`, {
       method: "POST",
       body: formData,
     });
@@ -143,11 +143,11 @@ const YearbookCard = ({ yearbook, setYearbooks }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/yearbook/${id}/images`)
+    fetch(`http://${process.env.REACT_APP_API_URL}/yearbook/${id}/images`)
       .then((res) => res.json())
       .then((images) => {
         if (images.length > 0) {
-          setImageSrc(`http://localhost:5000/${images[0].file_path}`);
+          setImageSrc(`http://${process.env.REACT_APP_API_URL}/${images[0].file_path}`);
         }
       })
       .catch((err) => console.error("Error fetching images:", err));
@@ -168,7 +168,7 @@ const YearbookCard = ({ yearbook, setYearbooks }) => {
    if (!result.isConfirmed) return;
 
   try {
-    const res = await fetch(`http://localhost:5000/yearbook/${id}`, {
+    const res = await fetch(`http://${process.env.REACT_APP_API_URL}/yearbook/${id}`, {
       method: "DELETE",
     });
 
@@ -232,7 +232,7 @@ const YearbookViewer = ({ yearbook, onClose }) => {
   const [singlePage, setSinglePage] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/yearbook/${yearbook.id}/images`)
+    fetch(`http://${process.env.REACT_APP_API_URL}/yearbook/${yearbook.id}/images`)
       .then((res) => res.json())
       .then((data) => setImages(data))
       .catch((err) => console.error("Error fetching images:", err));
@@ -298,7 +298,7 @@ const YearbookViewer = ({ yearbook, onClose }) => {
               className="w-auto h-auto flex justify-center items-center "
             >
               <img
-                src={`http://localhost:5000/${img.file_path}`}
+                src={`http://${process.env.REACT_APP_API_URL}/${img.file_path}`}
                 alt={`Page ${index + 1}`}
                 className="max-w-full max-h-full object-contain rounded-lg"
               />
@@ -321,7 +321,7 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/yearbooks")
+    fetch(`http://${process.env.REACT_APP_API_URL}/yearbooks`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -340,7 +340,7 @@ export default function Dashboard() {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/session", {
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/session`, {
           method: "GET",
           credentials: "include",
         });

@@ -327,10 +327,10 @@ const Result = () => {
                     {images.map((image, index) => (
                       <img
                         key={index}
-                        src={`http://localhost:5000${image}`}
+                        src={`http://${process.env.REACT_APP_API_URL}${image}`}
                         alt="Event"
                         className="rounded-lg cursor-pointer hover:scale-105 transition-transform"
-                        onClick={() => setSelectedImage(`http://localhost:5000${image}`)}
+                        onClick={() => setSelectedImage(`http://${process.env.REACT_APP_API_URL}${image}`)}
                       />
                     ))}
                   </div>

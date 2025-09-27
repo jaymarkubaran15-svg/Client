@@ -29,7 +29,7 @@ export default function SocialMediaUI() {
   }, [id]);
 const fetchUser = async () => {
   try {
-    const response = await fetch(`http://localhost:5000/api/users/${id}`, {
+    const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/users/${id}`, {
       credentials: "include",
     });
 

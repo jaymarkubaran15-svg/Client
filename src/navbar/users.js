@@ -16,7 +16,7 @@ export default function Users() {
 
 
    useEffect(() => {
-  fetch("http://localhost:5000/api/users")
+  fetch(`http://${process.env.REACT_APP_API_URL}/api/users`)
     .then((res) => res.json())
     .then((data) => {
       const alumniUsers = data.filter(user => user.role === "alumni");
@@ -103,7 +103,7 @@ const exportPDF = async () => {
 
     // --- Fetch Survey Answers per user ---
     try {
-      const res = await fetch(`http://localhost:5000/api/submission/${user.id}`);
+      const res = await fetch(`http://${process.env.REACT_APP_API_URL}/api/submission/${user.id}`);
       const data = await res.json();
       const answers = data.answers || {};
 
@@ -186,7 +186,7 @@ const exportPDF = async () => {
   
 const downloadUserPDF = async (user) => {
   try {
-    const res = await fetch(`http://localhost:5000/api/submission/${user.id}`);
+    const res = await fetch(`http://${process.env.REACT_APP_API_URL}/api/submission/${user.id}`);
     const data = await res.json();
     const answers = data.answers || {};
 
@@ -338,7 +338,7 @@ const handleUpload = async (e) => {
 
   try {
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:5000/upload-alumni-ids", true);
+    xhr.open("POST", `http://${process.env.REACT_APP_API_URL}/upload-alumni-ids`, true);
 
     xhr.upload.onprogress = (event) => {
       if (event.lengthComputable) {

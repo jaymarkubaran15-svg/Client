@@ -67,7 +67,7 @@ const cropImage = async () => {
 
   const fetchUser = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/user", {
+      const response = await fetch(`http://${process.env.REACT_APP_API_URL}/api/user`, {
         credentials: "include",
       });
       if (!response.ok) {

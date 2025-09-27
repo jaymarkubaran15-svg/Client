@@ -8,7 +8,7 @@ const SurveyTable = () => {
   useEffect(() => {
     const fetchSurveyData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/survey");
+        const response = await fetch(`http://${process.env.REACT_APP_API_URL}5000/api/survey`);
         if (!response.ok) throw new Error("Failed to fetch survey data");
 
         const data = await response.json();

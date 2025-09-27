@@ -10,11 +10,11 @@ const YearbookCard = ({ yearbook }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/yearbook/${id}/images`)
+    fetch(`http://${process.env.REACT_APP_API_URL}/yearbook/${id}/images`)
       .then((res) => res.json())
       .then((images) => {
         if (images.length > 0) {
-          setImageSrc(`http://localhost:5000/${images[0].file_path}`);
+          setImageSrc(`http://${process.env.REACT_APP_API_URL}/${images[0].file_path}`);
         }
       })
       .catch((err) => console.error("Error fetching images:", err));
@@ -62,7 +62,7 @@ const YearbookViewer = ({ yearbook, onClose }) => {
 
   // Fetch images
   useEffect(() => {
-    fetch(`http://localhost:5000/yearbook/${yearbook.id}/images`)
+    fetch(`http://${process.env.REACT_APP_API_URL}/yearbook/${yearbook.id}/images`)
       .then((res) => res.json())
       .then((data) => {
         setImages(data);
@@ -167,7 +167,7 @@ const YearbookViewer = ({ yearbook, onClose }) => {
                   className="flex justify-center items-center bg-white"
                 >
                   <img
-                    src={`http://localhost:5000/${img.file_path}`}
+                    src={`http://${process.env.REACT_APP_API_URL}/${img.file_path}`}
                     alt={`Page ${index + 1}`}
                     className="w-full h-full object-contain sm:object-cover rounded"
                     draggable={false}
@@ -195,7 +195,7 @@ const [hasSubmitted, setHasSubmitted] = useState(false);
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/user", {
+        const res = await fetch(`http://${process.env.REACT_APP_API_URL}/api/user`, {
           method: "GET",
           credentials: "include", // include cookies
         });
@@ -224,7 +224,7 @@ const [hasSubmitted, setHasSubmitted] = useState(false);
 
 
   useEffect(() => {
-    fetch("http://localhost:5000/yearbooks")
+    fetch(`http://${process.env.REACT_APP_API_URL}/yearbooks`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
