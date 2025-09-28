@@ -141,6 +141,7 @@ const MemoryMapSignUp = () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_API_URL}/api/register`, {
           method: "POST",
+          credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         });
