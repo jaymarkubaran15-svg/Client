@@ -139,7 +139,7 @@ const MemoryMapSignUp = () => {
       }
   
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/register`, {
+        const response = await fetch(`https://server1-95qr.onrender.com//api/register`, {
           method: "POST",
           credentials: "include",
           headers: { "Content-Type": "application/json" },
